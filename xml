@@ -1,0 +1,566 @@
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://servicews.processo.consulta.portal.tjpa.jus.br/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="ConsultaProcessualServiceImplService" targetNamespace="http://servicews.processo.consulta.portal.tjpa.jus.br/">
+<wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://servicews.processo.consulta.portal.tjpa.jus.br/" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://servicews.processo.consulta.portal.tjpa.jus.br/">
+<xs:element name="anexoVO" type="tns:anexoVO"/>
+<xs:element name="dadosProcessoCNJ" type="tns:dadosProcessoCNJ"/>
+<xs:element name="dadosProcessoCNJResponse" type="tns:dadosProcessoCNJResponse"/>
+<xs:element name="dadosProcessoListaDocumento" type="tns:dadosProcessoListaDocumento"/>
+<xs:element name="dadosProcessoListaDocumentoResponse" type="tns:dadosProcessoListaDocumentoResponse"/>
+<xs:element name="dadosProcessoTJPA" type="tns:dadosProcessoTJPA"/>
+<xs:element name="dadosProcessoTJPAResponse" type="tns:dadosProcessoTJPAResponse"/>
+<xs:element name="getConteudoDocumentoIndividual" type="tns:getConteudoDocumentoIndividual"/>
+<xs:element name="getConteudoDocumentoIndividualCorregedoria" type="tns:getConteudoDocumentoIndividualCorregedoria"/>
+<xs:element name="getConteudoDocumentoIndividualCorregedoriaResponse" type="tns:getConteudoDocumentoIndividualCorregedoriaResponse"/>
+<xs:element name="getConteudoDocumentoIndividualResponse" type="tns:getConteudoDocumentoIndividualResponse"/>
+<xs:element name="getConteudoDocumentoLista" type="tns:getConteudoDocumentoLista"/>
+<xs:element name="getConteudoDocumentoListaResponse" type="tns:getConteudoDocumentoListaResponse"/>
+<xs:element name="processoVO" type="tns:processoVO"/>
+<xs:complexType name="dadosProcessoCNJ">
+<xs:sequence>
+<xs:element minOccurs="0" name="numeroProcessoCNJ" type="xs:string"/>
+<xs:element minOccurs="0" name="tipoConsulta" type="tns:tipoConsulta"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="dadosProcessoCNJResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:processoVO"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="processoVO">
+<xs:sequence>
+<xs:element minOccurs="0" name="numeroCNJ" type="xs:string"/>
+<xs:element minOccurs="0" name="cdDocumentoPrincipal" type="xs:long"/>
+<xs:element minOccurs="0" name="numeroSistemaSAP" type="xs:string"/>
+<xs:element minOccurs="0" name="numeroProcessoPrevento" type="xs:string"/>
+<xs:element minOccurs="0" name="instancia" type="xs:string"/>
+<xs:element minOccurs="0" name="areaJudicial" type="xs:string"/>
+<xs:element minOccurs="0" name="situacao" type="xs:string"/>
+<xs:element minOccurs="0" name="competencia" type="xs:string"/>
+<xs:element minOccurs="0" name="classe" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="assuntos" type="tns:assuntoVO"/>
+<xs:element minOccurs="0" name="comarca" type="xs:string"/>
+<xs:element minOccurs="0" name="vara" type="xs:string"/>
+<xs:element minOccurs="0" name="gabinete" type="xs:string"/>
+<xs:element minOccurs="0" name="secretaria" type="xs:string"/>
+<xs:element minOccurs="0" name="dataDistribuicao" type="xs:string"/>
+<xs:element minOccurs="0" name="nomeMagistrado" type="xs:string"/>
+<xs:element minOccurs="0" name="numeroInquerito" type="xs:string"/>
+<xs:element minOccurs="0" name="instituicao" type="xs:string"/>
+<xs:element minOccurs="0" name="valorCausa" type="xs:string"/>
+<xs:element minOccurs="0" name="dataAutuacao" type="xs:string"/>
+<xs:element minOccurs="0" name="segredoJustica" type="xs:string"/>
+<xs:element minOccurs="0" name="numVolumes" type="xs:long"/>
+<xs:element minOccurs="0" name="numPaginas" type="xs:long"/>
+<xs:element minOccurs="0" name="prioridade" type="xs:string"/>
+<xs:element minOccurs="0" name="gratuidade" type="xs:string"/>
+<xs:element minOccurs="0" name="fundamentacaoLegal" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="partes" nillable="true" type="tns:parteProcessoVO"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="documentos" nillable="true" type="tns:documentoVO"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="custas" nillable="true" type="tns:custaVO"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="movimentos" nillable="true" type="tns:movimentoVO"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="movimentos2g" nillable="true" type="tns:movimento2GVO"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="audiencias" nillable="true" type="tns:audienciaVO"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="documentoLista" nillable="true" type="tns:documentosListaVO"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="processoTJPALista" nillable="true" type="tns:processoTJPA"/>
+<xs:element minOccurs="0" name="ultimaTramitacaoInterna" type="xs:string"/>
+<xs:element minOccurs="0" name="status" type="tns:statusVO"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="assuntoVO">
+<xs:sequence>
+<xs:element minOccurs="0" name="cdassunto" type="xs:long"/>
+<xs:element minOccurs="0" name="deassunto" type="xs:string"/>
+<xs:element minOccurs="0" name="flprincipal" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="parteProcessoVO">
+<xs:sequence>
+<xs:element minOccurs="0" name="nome" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="representantes" nillable="true" type="tns:representanteParteVO"/>
+<xs:element minOccurs="0" name="tpparticipacao" type="tns:tipoParticipacaoVO"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="representanteParteVO">
+<xs:sequence>
+<xs:element minOccurs="0" name="nome" type="xs:string"/>
+<xs:element minOccurs="0" name="tpparticipacao" type="tns:tipoParticipacaoVO"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="tipoParticipacaoVO">
+<xs:sequence>
+<xs:element minOccurs="0" name="cdtpparticipacao" type="xs:long"/>
+<xs:element minOccurs="0" name="detpparticipacao" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="documentoVO">
+<xs:sequence>
+<xs:element minOccurs="0" name="anexo" type="xs:base64Binary"/>
+<xs:element minOccurs="0" name="cdNumeroMandadoBNMP" type="xs:string"/>
+<xs:element minOccurs="0" name="cddocumento" type="xs:string"/>
+<xs:element minOccurs="0" name="cdtpdocumento" type="xs:string"/>
+<xs:element minOccurs="0" name="concluido" type="xs:string"/>
+<xs:element minOccurs="0" name="dataAssinatura" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="dataConclusao" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="dataDistribuicao" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="dataDocumento" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="declasse" type="xs:string"/>
+<xs:element minOccurs="0" name="flsegredo" type="xs:string"/>
+<xs:element minOccurs="0" name="tipo" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="custaVO">
+<xs:sequence>
+<xs:element minOccurs="0" name="cdcusta" type="xs:long"/>
+<xs:element minOccurs="0" name="cddocumento" type="xs:string"/>
+<xs:element minOccurs="0" name="cdtpcusta" type="xs:long"/>
+<xs:element minOccurs="0" name="dataCusta" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="dataQuitacao" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="situacao" type="xs:string"/>
+<xs:element minOccurs="0" name="tipo" type="xs:string"/>
+<xs:element minOccurs="0" name="valor" type="xs:double"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="movimentoVO">
+<xs:sequence>
+<xs:element minOccurs="0" name="cddocumento" type="xs:string"/>
+<xs:element minOccurs="0" name="cddocumentofilho" type="xs:string"/>
+<xs:element minOccurs="0" name="cdtpmovimento" type="xs:long"/>
+<xs:element minOccurs="0" name="dataBaixa" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="dataMovimento" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="dataRemessa" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="destino" type="xs:string"/>
+<xs:element minOccurs="0" name="detpmovimento" type="xs:string"/>
+<xs:element minOccurs="0" name="nrseqmovimento" type="xs:long"/>
+<xs:element minOccurs="0" name="origem" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="subMovimentoList" nillable="true" type="tns:subMovimentoVO"/>
+<xs:element minOccurs="0" name="tramitacaoMovimento" type="tns:tramitacaoMovimentoVO"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="subMovimentoVO">
+<xs:sequence>
+<xs:element minOccurs="0" name="data" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="descricao" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="tramitacaoMovimentoVO">
+<xs:sequence>
+<xs:element minOccurs="0" name="dataBaixa" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="destino" type="xs:string"/>
+<xs:element minOccurs="0" name="origem" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="movimento2GVO">
+<xs:sequence>
+<xs:element minOccurs="0" name="cddocumento" type="xs:string"/>
+<xs:element minOccurs="0" name="cdprocesso" type="xs:string"/>
+<xs:element minOccurs="0" name="cdtpmovimento" type="xs:string"/>
+<xs:element minOccurs="0" name="dataBaixa" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="dataMovimento" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="dataRemessa" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="destino" type="tns:origemVO"/>
+<xs:element minOccurs="0" name="detpmovimento" type="xs:string"/>
+<xs:element minOccurs="0" name="nrseqmovimento" type="xs:long"/>
+<xs:element minOccurs="0" name="origem" type="tns:origemVO"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="origemVO">
+<xs:sequence>
+<xs:element minOccurs="0" name="cdorigem" type="xs:long"/>
+<xs:element minOccurs="0" name="deorigem" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="audienciaVO">
+<xs:sequence>
+<xs:element minOccurs="0" name="cddocumento" type="xs:long"/>
+<xs:element minOccurs="0" name="dataAgendamento" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="juiz" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="parteAudienciaLista" nillable="true" type="tns:parteAudienciaVO"/>
+<xs:element minOccurs="0" name="tipo" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="parteAudienciaVO">
+<xs:sequence>
+<xs:element minOccurs="0" name="nome" type="xs:string"/>
+<xs:element minOccurs="0" name="participacao" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="documentosListaVO">
+<xs:sequence>
+<xs:element minOccurs="0" name="cdDocumento" type="xs:string"/>
+<xs:element minOccurs="0" name="cdProcesso" type="xs:string"/>
+<xs:element minOccurs="0" name="instancia" type="xs:string"/>
+<xs:element minOccurs="0" name="situacao" type="xs:string"/>
+<xs:element minOccurs="0" name="vara" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="processoTJPA">
+<xs:sequence>
+<xs:element minOccurs="0" name="codigoProcesso" type="xs:string"/>
+<xs:element minOccurs="0" name="codigoProcessoAntigo" type="xs:string"/>
+<xs:element minOccurs="0" name="comarca" type="xs:string"/>
+<xs:element minOccurs="0" name="instancia" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="statusVO">
+<xs:sequence>
+<xs:element minOccurs="0" name="mensagem" type="xs:string"/>
+<xs:element minOccurs="0" name="resultado" type="tns:resultado"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getConteudoDocumentoIndividualCorregedoria">
+<xs:sequence>
+<xs:element minOccurs="0" name="cdProcesso" type="xs:string"/>
+<xs:element minOccurs="0" name="numeroSequencia" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getConteudoDocumentoIndividualCorregedoriaResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:anexoVO"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="anexoVO">
+<xs:sequence>
+<xs:element minOccurs="0" name="status" type="tns:statusVO"/>
+<xs:element minOccurs="0" name="conteudo" type="xs:base64Binary"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="conteudoLista" nillable="true" type="xs:base64Binary"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getConteudoDocumentoIndividual">
+<xs:sequence>
+<xs:element minOccurs="0" name="cdDocumento" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getConteudoDocumentoIndividualResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:anexoVO"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="dadosProcessoListaDocumento">
+<xs:sequence>
+<xs:element minOccurs="0" name="numeroProcesso" type="xs:string"/>
+<xs:element minOccurs="0" name="numeroDocumento" type="xs:string"/>
+<xs:element minOccurs="0" name="tipoConsulta" type="tns:tipoConsulta"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="dadosProcessoListaDocumentoResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:processoVO"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="dadosProcessoTJPA">
+<xs:sequence>
+<xs:element minOccurs="0" name="numeroProcessoTJPA" type="xs:string"/>
+<xs:element minOccurs="0" name="comarca" type="tns:comarcas"/>
+<xs:element minOccurs="0" name="tipoConsulta" type="tns:tipoConsulta"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="dadosProcessoTJPAResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:processoVO"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getConteudoDocumentoLista">
+<xs:sequence>
+<xs:element minOccurs="0" name="numeroProcesso" type="xs:string"/>
+<xs:element minOccurs="0" name="tipoConsulta" type="tns:tipoConsulta"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getConteudoDocumentoListaResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:anexoVO"/>
+</xs:sequence>
+</xs:complexType>
+<xs:simpleType name="tipoConsulta">
+<xs:restriction base="xs:string">
+<xs:enumeration value="PRIMEIRO_GRAU"/>
+<xs:enumeration value="JUIZADOS_ESPECIAIS"/>
+<xs:enumeration value="JUSTICA_MILITAR"/>
+<xs:enumeration value="SEGUNDO_GRAU"/>
+<xs:enumeration value="TURMAS_RECURSAIS"/>
+<xs:enumeration value="CORREGEDORIA"/>
+</xs:restriction>
+</xs:simpleType>
+<xs:simpleType name="resultado">
+<xs:restriction base="xs:string">
+<xs:enumeration value="SUCESSO"/>
+<xs:enumeration value="FALHA"/>
+</xs:restriction>
+</xs:simpleType>
+<xs:simpleType name="comarcas">
+<xs:restriction base="xs:string">
+<xs:enumeration value="ABAETETUBA"/>
+<xs:enumeration value="ACARA"/>
+<xs:enumeration value="AFUA"/>
+<xs:enumeration value="ALENQUER"/>
+<xs:enumeration value="ALMEIRIM"/>
+<xs:enumeration value="ALTAMIRA"/>
+<xs:enumeration value="ANAJAS"/>
+<xs:enumeration value="ANANINDEUA"/>
+<xs:enumeration value="ANAPU"/>
+<xs:enumeration value="AUGUSTO_CORREA"/>
+<xs:enumeration value="AURORA_DO_PARA"/>
+<xs:enumeration value="BAIAO"/>
+<xs:enumeration value="BARCARENA"/>
+<xs:enumeration value="BELEM"/>
+<xs:enumeration value="BENEVIDES"/>
+<xs:enumeration value="BONITO"/>
+<xs:enumeration value="BRAGANCA"/>
+<xs:enumeration value="BRASIL_NOVO"/>
+<xs:enumeration value="BREU_BRANCO"/>
+<xs:enumeration value="BREVES"/>
+<xs:enumeration value="BUJARU"/>
+<xs:enumeration value="CACHOEIRA_DO_ARARI"/>
+<xs:enumeration value="CAMETA"/>
+<xs:enumeration value="CANAA_DOS_CARAJAS"/>
+<xs:enumeration value="CAPANEMA"/>
+<xs:enumeration value="CAPITAO_POCO"/>
+<xs:enumeration value="CASTANHAL"/>
+<xs:enumeration value="CHAVES"/>
+<xs:enumeration value="CONCEICAO_DO_ARAGUAIA"/>
+<xs:enumeration value="CONCORDIA_DO_PARA"/>
+<xs:enumeration value="CURIONOPOLIS"/>
+<xs:enumeration value="CURRALINHO"/>
+<xs:enumeration value="CURUCA"/>
+<xs:enumeration value="DOM_ELISEU"/>
+<xs:enumeration value="FARO"/>
+<xs:enumeration value="GARRAFAO_DO_NORTE"/>
+<xs:enumeration value="GOIANESIA_DO_PARA"/>
+<xs:enumeration value="GURUPA"/>
+<xs:enumeration value="IGARAPE_ACU"/>
+<xs:enumeration value="IGARAPE_MIRI"/>
+<xs:enumeration value="INHANGAPI"/>
+<xs:enumeration value="IPIXUNA_DO_PARA"/>
+<xs:enumeration value="IRITUIA"/>
+<xs:enumeration value="ITAITUBA"/>
+<xs:enumeration value="ITUPIRANGA"/>
+<xs:enumeration value="JACAREACANGA"/>
+<xs:enumeration value="JACUNDA"/>
+<xs:enumeration value="JURUTI"/>
+<xs:enumeration value="JUSTICA_MILITAR"/>
+<xs:enumeration value="LIMOEIRO_DO_AJURU"/>
+<xs:enumeration value="MAE_DO_RIO"/>
+<xs:enumeration value="MARABA"/>
+<xs:enumeration value="MARACANA"/>
+<xs:enumeration value="MARAPANIM"/>
+<xs:enumeration value="MARITUBA"/>
+<xs:enumeration value="MEDICILANDIA"/>
+<xs:enumeration value="MELGACO"/>
+<xs:enumeration value="MOCAJUBA"/>
+<xs:enumeration value="MOJU"/>
+<xs:enumeration value="MONTE_ALEGRE"/>
+<xs:enumeration value="MUANA"/>
+<xs:enumeration value="NOVA_TIMBOTEUA"/>
+<xs:enumeration value="NOVO_PROGRESSO"/>
+<xs:enumeration value="NOVO_REPARTIMENTO"/>
+<xs:enumeration value="OBIDOS"/>
+<xs:enumeration value="OEIRAS_DO_PARA"/>
+<xs:enumeration value="ORIXIMINA"/>
+<xs:enumeration value="OUREM"/>
+<xs:enumeration value="OURILANDIA_DO_NORTE"/>
+<xs:enumeration value="PACAJA"/>
+<xs:enumeration value="PARAGOMINAS"/>
+<xs:enumeration value="PARAUAPEBAS"/>
+<xs:enumeration value="PEIXE_BOI"/>
+<xs:enumeration value="PONTA_DE_PEDRAS"/>
+<xs:enumeration value="PORTEL"/>
+<xs:enumeration value="PORTO_DE_MOZ"/>
+<xs:enumeration value="PRAINHA"/>
+<xs:enumeration value="PRIMAVERA"/>
+<xs:enumeration value="REDENCAO"/>
+<xs:enumeration value="RIO_MARIA"/>
+<xs:enumeration value="RONDON_DO_PARA"/>
+<xs:enumeration value="RUROPOLIS"/>
+<xs:enumeration value="SALINOPOLIS"/>
+<xs:enumeration value="SALVATERRA"/>
+<xs:enumeration value="SANTA_BARBARA_DO_PARA"/>
+<xs:enumeration value="SANTA_IZABEL_DO_PARA"/>
+<xs:enumeration value="SANTA_LUZIA_DO_PARA"/>
+<xs:enumeration value="SANTA_MARIA_DO_PARA"/>
+<xs:enumeration value="SANTANA_DO_ARAGUAIA"/>
+<xs:enumeration value="SANTAREM"/>
+<xs:enumeration value="SANTAREM_NOVO"/>
+<xs:enumeration value="SANTO_ANTONIO_DO_TAUA"/>
+<xs:enumeration value="SAO_CAETANO_DE_ODIVELAS"/>
+<xs:enumeration value="SAO_DOMINGOS_DO_ARAGUAIA"/>
+<xs:enumeration value="SAO_DOMINGOS_DO_CAPIM"/>
+<xs:enumeration value="SAO_FELIX_DO_XINGU"/>
+<xs:enumeration value="SAO_FRANCISCO_DO_PARA"/>
+<xs:enumeration value="SAO_GERALDO_DO_ARAGUAIA"/>
+<xs:enumeration value="SAO_JOAO_DO_ARAGUAIA"/>
+<xs:enumeration value="SAO_MIGUEL_DO_GUAMA"/>
+<xs:enumeration value="SAO_SEBASTIAO_DA_BOA_VISTA"/>
+<xs:enumeration value="SENADOR_JOSE_PORFIRIO"/>
+<xs:enumeration value="SOURE"/>
+<xs:enumeration value="TAILANDIA"/>
+<xs:enumeration value="TERRA_SANTA"/>
+<xs:enumeration value="TOME_ACU"/>
+<xs:enumeration value="TUCUMA"/>
+<xs:enumeration value="TUCURUI"/>
+<xs:enumeration value="ULIANOPOLIS"/>
+<xs:enumeration value="URUARA"/>
+<xs:enumeration value="VIGIA"/>
+<xs:enumeration value="VISEU"/>
+<xs:enumeration value="XINGUARA"/>
+<xs:enumeration value="COMARCA_NAO_EXISTE"/>
+</xs:restriction>
+</xs:simpleType>
+<xs:element name="Exception" type="tns:Exception"/>
+<xs:complexType name="Exception">
+<xs:sequence>
+<xs:element minOccurs="0" name="message" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+</wsdl:types>
+<wsdl:message name="dadosProcessoCNJ">
+<wsdl:part element="tns:dadosProcessoCNJ" name="parameters"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="dadosProcessoTJPAResponse">
+<wsdl:part element="tns:dadosProcessoTJPAResponse" name="parameters"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="dadosProcessoTJPA">
+<wsdl:part element="tns:dadosProcessoTJPA" name="parameters"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="getConteudoDocumentoIndividualResponse">
+<wsdl:part element="tns:getConteudoDocumentoIndividualResponse" name="parameters"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="getConteudoDocumentoIndividualCorregedoriaResponse">
+<wsdl:part element="tns:getConteudoDocumentoIndividualCorregedoriaResponse" name="parameters"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="getConteudoDocumentoIndividualCorregedoria">
+<wsdl:part element="tns:getConteudoDocumentoIndividualCorregedoria" name="parameters"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="getConteudoDocumentoIndividual">
+<wsdl:part element="tns:getConteudoDocumentoIndividual" name="parameters"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="dadosProcessoListaDocumentoResponse">
+<wsdl:part element="tns:dadosProcessoListaDocumentoResponse" name="parameters"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="dadosProcessoListaDocumento">
+<wsdl:part element="tns:dadosProcessoListaDocumento" name="parameters"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="getConteudoDocumentoLista">
+<wsdl:part element="tns:getConteudoDocumentoLista" name="parameters"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="getConteudoDocumentoListaResponse">
+<wsdl:part element="tns:getConteudoDocumentoListaResponse" name="parameters"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="dadosProcessoCNJResponse">
+<wsdl:part element="tns:dadosProcessoCNJResponse" name="parameters"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="Exception">
+<wsdl:part element="tns:Exception" name="Exception"> </wsdl:part>
+</wsdl:message>
+<wsdl:portType name="ConsultaProcessualServiceImpl">
+<wsdl:operation name="dadosProcessoCNJ">
+<wsdl:input message="tns:dadosProcessoCNJ" name="dadosProcessoCNJ"> </wsdl:input>
+<wsdl:output message="tns:dadosProcessoCNJResponse" name="dadosProcessoCNJResponse"> </wsdl:output>
+<wsdl:fault message="tns:Exception" name="Exception"> </wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="getConteudoDocumentoIndividualCorregedoria">
+<wsdl:input message="tns:getConteudoDocumentoIndividualCorregedoria" name="getConteudoDocumentoIndividualCorregedoria"> </wsdl:input>
+<wsdl:output message="tns:getConteudoDocumentoIndividualCorregedoriaResponse" name="getConteudoDocumentoIndividualCorregedoriaResponse"> </wsdl:output>
+<wsdl:fault message="tns:Exception" name="Exception"> </wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="getConteudoDocumentoIndividual">
+<wsdl:input message="tns:getConteudoDocumentoIndividual" name="getConteudoDocumentoIndividual"> </wsdl:input>
+<wsdl:output message="tns:getConteudoDocumentoIndividualResponse" name="getConteudoDocumentoIndividualResponse"> </wsdl:output>
+<wsdl:fault message="tns:Exception" name="Exception"> </wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="dadosProcessoListaDocumento">
+<wsdl:input message="tns:dadosProcessoListaDocumento" name="dadosProcessoListaDocumento"> </wsdl:input>
+<wsdl:output message="tns:dadosProcessoListaDocumentoResponse" name="dadosProcessoListaDocumentoResponse"> </wsdl:output>
+<wsdl:fault message="tns:Exception" name="Exception"> </wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="dadosProcessoTJPA">
+<wsdl:input message="tns:dadosProcessoTJPA" name="dadosProcessoTJPA"> </wsdl:input>
+<wsdl:output message="tns:dadosProcessoTJPAResponse" name="dadosProcessoTJPAResponse"> </wsdl:output>
+<wsdl:fault message="tns:Exception" name="Exception"> </wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="getConteudoDocumentoLista">
+<wsdl:input message="tns:getConteudoDocumentoLista" name="getConteudoDocumentoLista"> </wsdl:input>
+<wsdl:output message="tns:getConteudoDocumentoListaResponse" name="getConteudoDocumentoListaResponse"> </wsdl:output>
+<wsdl:fault message="tns:Exception" name="Exception"> </wsdl:fault>
+</wsdl:operation>
+</wsdl:portType>
+<wsdl:binding name="ConsultaProcessualServiceImplServiceSoapBinding" type="tns:ConsultaProcessualServiceImpl">
+<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="dadosProcessoCNJ">
+<soap:operation soapAction="" style="document"/>
+<wsdl:input name="dadosProcessoCNJ">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="dadosProcessoCNJResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+<wsdl:fault name="Exception">
+<soap:fault name="Exception" use="literal"/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="getConteudoDocumentoIndividualCorregedoria">
+<soap:operation soapAction="" style="document"/>
+<wsdl:input name="getConteudoDocumentoIndividualCorregedoria">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="getConteudoDocumentoIndividualCorregedoriaResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+<wsdl:fault name="Exception">
+<soap:fault name="Exception" use="literal"/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="getConteudoDocumentoIndividual">
+<soap:operation soapAction="" style="document"/>
+<wsdl:input name="getConteudoDocumentoIndividual">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="getConteudoDocumentoIndividualResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+<wsdl:fault name="Exception">
+<soap:fault name="Exception" use="literal"/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="dadosProcessoListaDocumento">
+<soap:operation soapAction="" style="document"/>
+<wsdl:input name="dadosProcessoListaDocumento">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="dadosProcessoListaDocumentoResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+<wsdl:fault name="Exception">
+<soap:fault name="Exception" use="literal"/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="dadosProcessoTJPA">
+<soap:operation soapAction="" style="document"/>
+<wsdl:input name="dadosProcessoTJPA">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="dadosProcessoTJPAResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+<wsdl:fault name="Exception">
+<soap:fault name="Exception" use="literal"/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="getConteudoDocumentoLista">
+<soap:operation soapAction="" style="document"/>
+<wsdl:input name="getConteudoDocumentoLista">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="getConteudoDocumentoListaResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+<wsdl:fault name="Exception">
+<soap:fault name="Exception" use="literal"/>
+</wsdl:fault>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="ConsultaProcessualServiceImplService">
+<wsdl:port binding="tns:ConsultaProcessualServiceImplServiceSoapBinding" name="ConsultaProcessualServiceImplPort">
+<soap:address location="https://consultas.tjpa.jus.br/WSConsultaProcessualTJ/ConsultaProcessualService"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>
